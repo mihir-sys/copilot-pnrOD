@@ -1,6 +1,6 @@
 # copilot-pnrOD
 
-Please use the following prompt to generate the code blocks.
+Please use the following prompt to generate the code blocks and refer main.py for the final code.
 
 #Prompt -1 
 Generate Python code that imports the necessary modules and functions for a PySpark application. 
