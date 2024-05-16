@@ -129,18 +129,8 @@ pnr_sample_df.createOrReplaceTempView("pnr_sample")
 Location_master_df.createOrReplaceTempView("Location_master")
 
 
-#Prompt -4 - Transform data to create final table
-# /*
-# Generate a SQL query that calculates the total journey distance and direct displacement for each ID in the pnr_sample table. 
+#Prompt -4 - Transform data to create final table - refer readme file for the prompt input
 
-# Join this table with the distance_master and Location_master tables to get the distance and location details. 
-
-# Use the haversine function to calculate the distance when the distance_in_km field is null. 
-
-# Also, create a column true_od__break_reason that indicates whether the 'Circuit rule' or 'Default rule' applies based on the direct displacement and allowed displacement. Finally, 
-
-# select specific fields from these tables and join with BacktrackExceptionmaster, TotalJourneyDistance, and DirectDisplacement tables.
-# */
 
 %sql
 WITH TotalJourneyDistance AS (
