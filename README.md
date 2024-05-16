@@ -52,7 +52,8 @@ DirectDisplacement calculates the direct displacement for each passenger (identi
 In The main query then selects various details about each passenger's journey, including the passenger's ID (PNRHash), the airline code (OPT_ALN_CD), the sequence number of the segment (SEG_SEQ_NBR), the origin and destination airports, the true and online itineraries, the reason for the break in the true OD (origin-destination), and the true and online OD distances.
 
 Write join queries for several tables, including pnr_sample, distance_master, BacktrackExceptionmaster, and Location_master, as well as the TotalJourneyDistance and DirectDisplacement subqueries. 
-Please refer following schema details :
+
+#Please refer following schema details :
 
 Table : pnr_sample
 -------------------------
@@ -76,12 +77,12 @@ source:string
 from_dt:date
 thru_dt:date
 
-BacktrackExceptionmaster
+Table : BacktrackExceptionmaster
 -------------------------
 orig:string
 dest:string
 
-Location_master
+Table : Location_master
 -------------------------
 ap_cd_val:string
 latitude:string
