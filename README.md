@@ -95,3 +95,8 @@ and handel exceptions as well
 
 #Prompt -6 
 Call the function with passing required parameter ad provide the write location path 
+
+Final Table Name :
+
+%sql
+select * from delta.`/mnt/ppeedp/raw/competition/copilot_output_mihir/od_output/`
