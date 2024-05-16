@@ -297,10 +297,10 @@ def execute_query_and_save(spark, output_path=None):
 
 #Prompt -6 
 # /*
-# call the function with passing required parameter ad provide the write location path 
+# call the function with passing required parameter ad provide the write in location path : /mnt/ppeedp/raw/competition/copilot_output_mihir/od_output
 # */
 
 # Example usage
-path = '/mnt/final_output/delta_table'
+path = '/mnt/ppeedp/raw/competition/copilot_output_mihir/od_output'
 spark = SparkSession.builder.appName("Query Execution").getOrCreate()
-execute_query_and_save(spark)
+execute_query_and_save(spark,path)
