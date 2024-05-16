@@ -38,15 +38,55 @@ path_Location_master = '/mnt/stppeedp/ppeedp/raw/eag/ey/test_cbi_reference_data_
 
 #Prompt -4 - Transform data to create final table
 
-Generate a SQL query that calculates the total journey distance and direct displacement for each ID in the pnr_sample table. 
+Write SQL query is used to calculate the total journey distance and direct displacement for each passenger in a flight dataset.
 
-Join this table with the distance_master and Location_master tables to get the distance and location details. 
+first creates two subqueries using CTE: TotalJourneyDistance and DirectDisplacement.
 
-Use the haversine function to calculate the distance when the distance_in_km field is null. 
+Using haversine formula if distance_in_km is null in CTE table
 
-Also, create a column true_od__break_reason that indicates whether the 'Circuit rule' or 'Default rule' applies based on the direct displacement and allowed displacement. Finally, 
+TotalJourneyDistance calculates the total journey distance for each ID in the distance_master table. sums up the distances between the origin and destination airports,
+ either using the distance provided in the distance_master table or calculating it using the haversine function if the distance is not available.
 
-select specific fields from these tables and join with BacktrackExceptionmaster, TotalJourneyDistance, and DirectDisplacement tables.
+DirectDisplacement calculates the direct displacement for each passenger (identified by PNRHash in the pnr_sample table). calculate similar way to TotalJourneyDistance, but also calculates an allowed_displacement which is 1.6 times the minimum distance in the distance_master table.
+
+In The main query then selects various details about each passenger's journey, including the passenger's ID (PNRHash), the airline code (OPT_ALN_CD), the sequence number of the segment (SEG_SEQ_NBR), the origin and destination airports, the true and online itineraries, the reason for the break in the true OD (origin-destination), and the true and online OD distances.
+
+Write join queries for several tables, including pnr_sample, distance_master, BacktrackExceptionmaster, and Location_master, as well as the TotalJourneyDistance and DirectDisplacement subqueries. 
+Please refer following schema details :
+
+Table : pnr_sample
+-------------------------
+PNRHash:string
+SEG_SEQ_NBR:string
+ORIG_AP_CD:string
+DESTN_AP_CD:string
+OPT_ALN_CD:string
+OPT_ALN_FLT_NBR:string
+MKT_ALN_CD:string
+fl_dt:string
+
+Table : distance_master
+-------------------------
+ID:string
+airport_origin_code:string
+airport_destination_code:string
+distance_in_km:integer
+distance_in_miles:decimal(14,2)
+source:string
+from_dt:date
+thru_dt:date
+
+BacktrackExceptionmaster
+-------------------------
+orig:string
+dest:string
+
+Location_master
+-------------------------
+ap_cd_val:string
+latitude:string
+longitude:string
+
 
 #Prompt -5 
 Create parameterise Python function using PySpark that encapsulates  SQL query and saves the result to a Delta table at a specified path.
